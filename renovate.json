@@ -6,7 +6,7 @@
       "customType": "regex",
       "fileMatch": ["^test_package_list.json$"],
       "matchStringsStrategy": "combination",
-      "datasourceTemplate": "custom.nginx",
+      "datasourceTemplate": "custom.local_generic",
       "matchStrings": [
         "\"extension\":\"(?<depName>.*)\"",
         "\"version\":\"(?<currentValue>.*)\""
@@ -14,16 +14,12 @@
     }
   ],
   "customDatasources": {
-    "nginx": {
-      "defaultRegistryUrlTemplate": "https://nginx.org/download",
-      "format": "html"
+    "local_generic": {
+      "defaultRegistryUrlTemplate": "file://versiontracker.json",
+      "transformTemplates": [
+        "{ \"releases\": $map($, function($v) { { \"version\": $v.version, \"sourceUrl\": $v.filelink } }) }"
+      ]
     }
   },
-  "packageRules": [
-    {
-      "matchDatasources": ["custom.nginx"],
-      "extractVersion": "^nginx-(?<version>.+)\\.tar\\.gz$"
-    }
-  ],
   "prHourlyLimit": 5
 }

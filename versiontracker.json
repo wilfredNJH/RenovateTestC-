@@ -1,12 +1,10 @@
-{
-    "releases": [
-      {
+[
+    {
         "version": "77",
-        "sourceUrl": "link1"
-      },
-      {
+        "filelink": "https://nexus.mycompany.com/repository/software/something-77.zip"
+    },
+    {
         "version": "76",
-        "sourceUrl": "link2"
-      }
-    ]
-}
+        "filelink": "https://nexus.mycompany.com/repository/software/something-76.zip"
+    },
+]
