@@ -1,12 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "dependencyDashboard": true,
-  "regexManagers": [
+  "customManagers": [
     {
       "customType": "regex",
       "fileMatch": ["^test_package_list.json$"],
       "matchStringsStrategy": "combination",
-      "datasourceTemplate": "custom.local_generic",
+      "datasourceTemplate": "custom.nginx",
       "matchStrings": [
         "\"extension\":\"(?<depName>.*)\"",
         "\"version\":\"(?<currentValue>.*)\""
@@ -14,12 +14,16 @@
     }
   ],
   "customDatasources": {
-    "local_generic": {
-      "defaultRegistryUrlTemplate": "file://versiontracker.json",
-      "transformTemplates": [
-        "{ \"releases\": $map($, function($v) { \"version\": $v.version } }"
-      ]
+    "nginx": {
+      "defaultRegistryUrlTemplate": "https://nginx.org/download",
+      "format": "html"
     }
   },
+  "packageRules": [
+    {
+      "matchDatasources": ["custom.nginx"],
+      "extractVersion": "^nginx-(?<version>.+)\\.tar\\.gz$"
+    }
+  ],
   "prHourlyLimit": 5
 }
