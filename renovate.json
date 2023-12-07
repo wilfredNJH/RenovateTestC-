@@ -1,25 +1,29 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "dependencyDashboard": true,
-  "customManagers": [
+  "regexManagers": [
     {
       "customType": "regex",
       "fileMatch": ["^test_package_list.json$"],
       "matchStringsStrategy": "combination",
-      "datasourceTemplate": "custom.local_generic",
       "matchStrings": [
         "\"extension\":\"(?<depName>.*)\"",
         "\"version\":\"(?<currentValue>.*)\""
-      ]
+      ],
+      "datasourceTemplate": "custom.nginx"
     }
   ],
   "customDatasources": {
-    "local_generic": {
-      "defaultRegistryUrlTemplate": "file://dependencies/versiontracker.json",
-      "transformTemplates": [
-        "{ \"releases\": $map($, function($v) { { \"version\": $v.version, \"sourceUrl\": $v.filelink } }) }"
-      ]
+    "nginx": {
+      "defaultRegistryUrlTemplate": "https://nginx.org/download",
+      "format": "html"
     }
   },
+  "packageRules": [
+    {
+      "matchDatasources": ["custom.nginx"],
+      "extractVersion": "(?<depName>.*)-(?<currentValue>.+).tar.gz"
+    }
+  ],
   "prHourlyLimit": 5
 }
