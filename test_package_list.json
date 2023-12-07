@@ -1,0 +1,58 @@
+{
+    "osx": [
+    {
+        "root_path": "external/adp-desktop-sdk",
+        "version": "5.0.1",
+        "artifactory": "https://art-bobcat.autodesk.com/artifactory/autodesk-3p-nuget/ADP-SDK/5.0.27/",
+        "extension":"test5",
+        "packages": [
+            {
+                "name": "adpsdk-cpp-wrapper-lib_osx_release_ubx64arm64_clang10",
+                "version":"76"
+            }
+        ],
+        "mappings": [
+            {
+                "action": "copytree",
+                "source": "adpsdk-cpp-wrapper-lib_osx_release_ubx64arm64_clang10.5.0.27/inc",
+                "destination": "include"
+            },
+            {
+                "action": "copytree",
+                "source": "adpsdk-cpp-wrapper-lib_osx_release_ubx64arm64_clang10.5.0.27/content",
+                "destination": "content"
+            },
+            {
+                "action": "copytree",
+                "source": "adpsdk-cpp-wrapper-lib_osx_release_ubx64arm64_clang10.5.0.27/libs",
+                "destination": "libs"
+            },
+            {
+                "action": "copytree",
+                "source": "adpsdk-cpp-wrapper-lib_osx_release_ubx64arm64_clang10.5.0.27/bin",
+                "destination": "bin"
+            }
+        ]
+    },
+    {
+        "root_path": "external/pupautomation",
+        "version": "1.5.0",
+        "keep_update": "false",
+        "artifactory": "https://art-bobcat.autodesk.com/artifactory/team-identity-desktop-nuget/3P/pupautomation/1.5.0/",
+        "extension": "zip",
+        "packages": [
+            {
+                "name": "lnx",
+                "version": ""
+            }
+        ],
+        "mappings": [
+            {
+                "action": "copytree",
+                "source": "lnx",
+                "destination": ""
+            }
+        ]
+    }
+    ]
+}
